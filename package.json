@@ -2,22 +2,24 @@
   "name": "chrome-extensions-template",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run clear && npm run copy && parcel build src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist && node ./injectWatch/index.js build",
-    "watch-parcel": "parcel watch src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist",
-    "watch-node-parcel": "node ./injectWatch/index.js watch",
-    "watch": "concurrently \"npm run watch-node-parcel\" \"npm run watch-parcel\"",
+    "build": "npm run clear && npm run copy && parcel build src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist && node ./watch/inject.js build",
+    "watch-baseFile": "parcel watch src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist",
+    "watch-injectDir": "node ./watch/inject.js watch",
+    "watch-static": "node watch/static.js",
+    "watch": "npm run clear && npm run copy && concurrently \"npm run watch-static\" \"npm run watch-injectDir\" \"npm run watch-baseFile\"",
     "clear": "rimraf dist",
     "copy": "copyfiles manifest.json assets/** dist"
   },
   "devDependencies": {
     "@parcel/transformer-vue": "^2.1.1",
     "@types/chrome": "^0.0.175",
+    "concurrently": "^7.0.0",
     "copyfiles": "^2.4.1",
+    "node-watch": "^0.7.2",
     "parcel": "^2.1.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.5.4",
-    "concurrently": "^7.0.0",
-    "node-watch": "^0.7.2"
+    "fs-extra": "^10.0.0",
+    "typescript": "^4.5.4"
   },
   "dependencies": {
     "@types/react": "^17.0.38",
