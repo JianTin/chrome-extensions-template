@@ -3,6 +3,12 @@
     "description": "Build an Extension!",
     "version": "1.0",
     "manifest_version": 3,
+    "icons": {
+        "16": "assets/16.png",
+        "32": "assets/32.png",
+        "48": "assets/16.png",
+        "128": "assets/32.png"
+    },
     "options_page": "options/index.html",
     "action": {
         "default_icon": {
@@ -14,10 +20,15 @@
         "default_title": "",
         "default_popup": "action/index.html"
     },
-    "icons": {
-        "16": "assets/16.png",
-        "32": "assets/32.png",
-        "48": "assets/16.png",
-        "128": "assets/32.png"
-    }
+    "background": {
+        "service_worker": "./background/index.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.baidu.com/*"],
+            "js": ["./inject/index.js"],
+            "css": ["./inject/style/index.css"],
+            "all_frames": true
+        }
+    ]
 }
