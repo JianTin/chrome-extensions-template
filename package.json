@@ -7,7 +7,7 @@
     "watch-injectDir": "node ./watch/inject.js watch",
     "watch-static": "node watch/static.js",
     "watch": "npm run clear && npm run copy && concurrently \"npm run watch-static\" \"npm run watch-injectDir\" \"npm run watch-baseFile\"",
-    "clear": "rimraf dist",
+    "clear": "rimraf dist .parcel-cache",
     "copy": "copyfiles manifest.json assets/** dist"
   },
   "devDependencies": {
