@@ -21,13 +21,13 @@
         "default_popup": "action/index.html"
     },
     "background": {
-        "service_worker": "./background/index.js"
+        "service_worker": "background/index.js"
     },
     "content_scripts": [
         {
             "matches": ["https://www.baidu.com/*"],
-            "js": ["./inject/index.js"],
-            "css": ["./inject/style/index.css"],
+            "js": ["inject/index.js"],
+            "css": ["inject/style/index.css"],
             "all_frames": true
         }
     ]
