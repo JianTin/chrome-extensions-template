@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "npm run clear && npm run copy && parcel build src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist && node ./watch/inject.js build",
-    "watch-baseFile": "parcel watch src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist",
+    "watch-baseFile": "parcel watch src/action/index.html src/options/index.html src/background/index.ts --dist-dir dist --no-hmr",
     "watch-injectDir": "node ./watch/inject.js watch",
     "watch-static": "node watch/static.js",
     "watch": "npm run clear && npm run copy && concurrently \"npm run watch-static\" \"npm run watch-injectDir\" \"npm run watch-baseFile\"",

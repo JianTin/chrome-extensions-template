@@ -4,7 +4,6 @@ const fs = require('fs')
 const child_process = require('child_process')
 const watch = require('node-watch')
 
-let defultPort = 1234
 const parcelRunArg = process.argv[2]
 const root = dirname(__dirname)
 const injectDir = join(root, '/src/inject')
@@ -28,14 +27,13 @@ generateDirArray(injectDir)
  * 生成 [npx parcel ... F:\\chrome-test\\chrome-extensions-template\\src\\inject\\*.ts --dist-dir F:\\chrome-test\\chrome-extensions-template\\dist\\inject\\]
  * */ 
 function generateCommad(dirPath){
-    defultPort+=1
     const enterPath = watchFileType.reduce((prev, type)=>{
         prev += ` ${dirPath}\\*.${type}`
         return prev
     }, '')
-    const addparcelHmrPort = parcelRunArg === 'watch' ? `--hmr-port ${defultPort}` : ''
+    const addparcelNoHmr = parcelRunArg === 'watch' ? ' --no-hmr' : ''
     const distPath = dirPath.replace('src', 'dist')
-    const after = enterPath + ` --dist-dir ${distPath} ${addparcelHmrPort}`
+    const after = enterPath + ` --dist-dir ${distPath} ${addparcelNoHmr}`
     return (`npx parcel ${parcelRunArg}` + after).replace(/\\/g, '\\\\')
 }
 const commandArray = dirArray.reduce((prev, dirPath)=>{
