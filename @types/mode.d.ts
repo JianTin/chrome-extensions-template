@@ -1,5 +1,7 @@
 declare module '*.png'
-declare module '*.vue' {
-    import vue from 'vue'
-    export default vue
+declare module '*.vue'
+declare var process: {
+    env: {
+        NODE_ENV: 'development' | 'production'
+    }
 }
