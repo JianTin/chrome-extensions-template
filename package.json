@@ -8,7 +8,8 @@
     "watch-static": "node watch/static.js",
     "watch": "npm run clear && npm run copy && concurrently \"npm run watch-static\" \"npm run watch-injectDir\" \"npm run watch-baseFile\"",
     "clear": "rimraf dist .parcel-cache",
-    "copy": "copyfiles manifest.json assets/** dist"
+    "copy": "copyfiles manifest.json assets/** dist && npm run copy:locales",
+    "copy:locales": "copyfiles -u 1 src/_locales/**/* dist"
   },
   "devDependencies": {
     "@parcel/transformer-vue": "^2.1.1",
